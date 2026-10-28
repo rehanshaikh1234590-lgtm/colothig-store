@@ -113,9 +113,11 @@ const money=n=>"PKR "+n.toLocaleString("en-PK");
 
 document.getElementById("products").innerHTML=products.map(p=>`
 <div class="card" id="${p.category}">
-<div class="art">${p.icon}</div>
+${p.image ? '<img src="' + p.image + '" alt="' + p.name + '" style="width:100%;height:250px;object-fit:cover;border-radius:8px">' : '<div class="art">' + p.icon + '</div>'}
 <p>${p.category==="men"?"MEN'S COLLECTION":"WOMEN'S COLLECTION"}</p>
 <h3>${p.name}</h3>
+${p.brand ? '<p><strong>Brand:</strong> ' + p.brand + '</p>' : ''}
+${p.quality ? '<p><strong>Quality:</strong> ' + p.quality + '</p>' : ''}
 <p class="price">${money(p.price)}</p>
 <button onclick="addToCart(${p.id})">Add to Cart</button>
 </div>`).join("");
